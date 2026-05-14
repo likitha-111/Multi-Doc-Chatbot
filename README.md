@@ -8,32 +8,32 @@ A Streamlit + FastAPI app for uploading PDFs, building a local vector knowledge 
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                        User Browser                          │
-│                   Streamlit Frontend :8501                   │
+│                        User Browser                         │
+│                   Streamlit Frontend :8501                  │
 └──────────────────────────┬──────────────────────────────────┘
                            │ HTTP/REST
 ┌──────────────────────────▼──────────────────────────────────┐
-│                FastAPI Backend :8001                   │
+│                FastAPI Backend :8001                        │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐   │
 │  │  /upload     │  │  /chat       │  │  /documents      │   │
 │  │  PyPDFLoader │  │  Groq LLM    │  │  /clear          │   │
 │  │  TextSplitter│  │  ConvChain   │  │  /session/:id    │   │
 │  └──────┬───────┘  └──────┬───────┘  └──────────────────┘   │
-└─────────┼─────────────────┼────────────────────────────────-─┘
+└─────────┼─────────────────┼─────────────────────────────────┘
           │                 │
 ┌─────────▼─────────────────▼──────────────────────────────────┐
 │              LangChain + Chroma + Groq                       │
 │  ┌────────────────────┐    ┌─────────────────────────────┐   │
-│  │ HuggingFace        │    │ ConversationalRetrievalChain │   │
-│  │ Sentence           │    │ ConversationBufferMemory     │   │
-│  │ Transformers       │    │ MMR Retrieval (k=5)          │   │
-│  │ all-MiniLM-L6-v2   │    │ Custom QA Prompt             │   │
+│  │ HuggingFace        │    │ ConversationalRetrievalChain│   │
+│  │ Sentence           │    │ ConversationBufferMemory    │   │
+│  │ Transformers       │    │ MMR Retrieval (k=5)         │   │
+│  │ all-MiniLM-L6-v2   │    │ Custom QA Prompt            │   │
 │  └────────┬───────────┘    └─────────────────────────────┘   │
-└───────────┼────────────────────────────────────────────────-──┘
+└───────────┼──────────────────────────────────────────────────┘
             │ embeddings
 ┌───────────▼──────────────────────────────────────────────────┐
-│                   ChromaDB (local persist)                     │
-│              ./data/chroma_db/                                │
+│                   ChromaDB (local persist)                   │
+│              ./data/chroma_db/                               │
 └──────────────────────────────────────────────────────────────┘
 ```
 
@@ -155,8 +155,6 @@ The frontend uses `app.py` and expects the backend at `API_BASE_URL`.
 ├── app.py
 ├── main.py
 ├── requirements.txt
-├── start.sh         # legacy launch script (may not match current layout)
 ├── README.md
-├── .env             # optional environment variables
-└── __pycache__/
+├── .env
 ```
